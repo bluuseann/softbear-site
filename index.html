@@ -1,0 +1,1483 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf7fd">
+  <meta name="description" content="SoftBear — вязаные игрушки ручной работы. Мишки, зайчики и брелоки для подарков и уютных моментов.">
+  <title>SoftBear — игрушки ручной работы</title>
+
+  <style>
+    :root {
+      --bg: #faf7fd;
+      --surface: #fffaff;
+      --surface2: #f0e7f8;
+      --text: #30263a;
+      --muted: #796b87;
+      --line: #e4d7ef;
+      --pink: #c5a3e3;
+      --green: #e3d8f1;
+      --lav: #d8c3ee;
+      --shadow: 0 16px 40px rgba(80, 48, 110, .10);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Georgia, serif;
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: -.7px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--pink);
+      font-size: 24px;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .navlinks a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 19px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 14px;
+      font-weight: 650;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: .92;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn.pink {
+      background: var(--pink);
+      color: #30263a;
+    }
+
+    .hero {
+      padding: 66px 0 76px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--pink);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: -1.7px;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5.7vw, 72px);
+      margin: 22px 0;
+    }
+
+    h1 em {
+      color: #a77bc7;
+      font-weight: 400;
+    }
+
+    .hero p {
+      max-width: 460px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .tiny-note {
+      margin-top: 18px !important;
+      font-size: 12px !important;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 440px;
+      border-radius: 48% 48% 24px 24px;
+      background: var(--surface2);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .hero-art::before,
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(128, 101, 160, .20);
+    }
+
+    .hero-art::before {
+      width: 360px;
+      height: 360px;
+    }
+
+    .hero-art::after {
+      width: 440px;
+      height: 440px;
+    }
+
+    .art-label {
+      position: absolute;
+      right: 24px;
+      bottom: 22px;
+      z-index: 2;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px 16px;
+      font-size: 12px;
+      color: var(--muted);
+      box-shadow: var(--shadow);
+    }
+
+    /* Декоративный мишка на первом экране */
+
+    .bear {
+      position: relative;
+      z-index: 1;
+      width: 238px;
+      height: 278px;
+      filter: drop-shadow(0 22px 20px rgba(74, 51, 90, .12));
+      transform: rotate(-3deg);
+    }
+
+    .bear .ear {
+      position: absolute;
+      top: 8px;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: #bc9bd4;
+      border: 8px solid #d9c4eb;
+    }
+
+    .bear .ear.left {
+      left: 22px;
+    }
+
+    .bear .ear.right {
+      right: 22px;
+    }
+
+    .bear .head {
+      position: absolute;
+      top: 27px;
+      left: 24px;
+      width: 190px;
+      height: 174px;
+      border-radius: 48% 48% 45% 45%;
+      background: radial-gradient(circle at 35% 27%, #eadcf5, #b99bd2 72%);
+    }
+
+    .bear .muzzle {
+      position: absolute;
+      left: 76px;
+      top: 100px;
+      width: 86px;
+      height: 61px;
+      border-radius: 50%;
+      background: #f0e3f8;
+    }
+
+    .bear .eye {
+      position: absolute;
+      top: 93px;
+      width: 9px;
+      height: 12px;
+      border-radius: 50%;
+      background: #49364f;
+    }
+
+    .bear .eye.left {
+      left: 67px;
+    }
+
+    .bear .eye.right {
+      right: 67px;
+    }
+
+    .bear .nose {
+      position: absolute;
+      top: 119px;
+      left: 105px;
+      width: 18px;
+      height: 13px;
+      border-radius: 55% 55% 65% 65%;
+      background: #49364f;
+    }
+
+    .bear .body {
+      position: absolute;
+      left: 35px;
+      top: 168px;
+      width: 170px;
+      height: 112px;
+      border-radius: 47% 47% 38% 38%;
+      background: linear-gradient(135deg, #d8bfe9, #a98ac7);
+    }
+
+    .bear .belly {
+      position: absolute;
+      left: 81px;
+      top: 189px;
+      width: 78px;
+      height: 75px;
+      border-radius: 50%;
+      background: #eadcf5;
+    }
+
+    .bear .arm {
+      position: absolute;
+      top: 180px;
+      width: 54px;
+      height: 90px;
+      border-radius: 50%;
+      background: #b99bd2;
+    }
+
+    .bear .arm.left {
+      left: 17px;
+      transform: rotate(23deg);
+    }
+
+    .bear .arm.right {
+      right: 17px;
+      transform: rotate(-23deg);
+    }
+
+    .bear .scarf {
+      position: absolute;
+      z-index: 2;
+      top: 170px;
+      left: 72px;
+      width: 95px;
+      height: 23px;
+      border-radius: 5px 5px 14px 14px;
+      background: #c5a3e3;
+      transform: rotate(-3deg);
+    }
+
+    /* Общие секции */
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(34px, 4vw, 48px);
+      margin: 12px 0 0;
+    }
+
+    .section-head p {
+      max-width: 380px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    /* Каталог */
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .filter {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 15px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-visual {
+      height: 235px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .product-visual::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(128, 101, 160, .18);
+    }
+
+    .toy-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 100px;
+      filter: drop-shadow(0 10px 8px rgba(63, 45, 70, .1));
+      transform: rotate(-5deg);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--surface);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .product-info {
+      padding: 19px;
+    }
+
+    .product-info h3 {
+      font-family: Georgia, serif;
+      font-size: 23px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 13px;
+      min-height: 42px;
+      margin-bottom: 16px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .price {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .small-link {
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-size: 12px;
+      padding: 5px;
+    }
+
+    .custom-banner {
+      margin-top: 26px;
+      padding: 28px 30px;
+      background: var(--surface2);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .custom-banner h3 {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .custom-banner p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* О мастерской */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--green);
+      border-radius: 28px;
+      padding: 34px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #392b48;
+    }
+
+    .about-card .big-heart {
+      font-size: 70px;
+      line-height: 1;
+    }
+
+    .about-card p {
+      font-family: Georgia, serif;
+      font-size: 31px;
+      line-height: 1.15;
+      max-width: 300px;
+      margin: 24px 0;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(34px, 4vw, 49px);
+      margin: 15px 0 20px;
+    }
+
+    .about-copy > p {
+      color: var(--muted);
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .value {
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+    }
+
+    .value strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .value span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Как заказать */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .step-num {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: #30263a;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .step h3 {
+      font-family: Georgia, serif;
+      font-weight: 500;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    /* Частые вопросы */
+
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq h2 {
+      text-align: center;
+      font-size: clamp(34px, 4vw, 48px);
+      margin: 12px 0 30px;
+    }
+
+    .faq .eyebrow {
+      display: flex;
+      justify-content: center;
+    }
+
+    .faq details {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 650;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      font-size: 22px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .faq details[open] summary::after {
+      content: "−";
+    }
+
+    .faq details p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 12px 0 0;
+      max-width: 680px;
+    }
+
+    /* Контакты */
+
+    .contact {
+      padding: 0 0 76px;
+    }
+
+    .contact-box {
+      border-radius: 28px;
+      padding: 50px 30px;
+      text-align: center;
+      background: var(--pink);
+      color: #30263a;
+    }
+
+    .contact-box .eyebrow {
+      color: #51405f;
+      justify-content: center;
+    }
+
+    .contact-box .eyebrow::before {
+      background: #51405f;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      margin: 18px auto 14px;
+      max-width: 650px;
+    }
+
+    .contact-box p {
+      max-width: 480px;
+      margin: 0 auto 25px;
+      color: #51405f;
+    }
+
+    .contact-box .btn {
+      background: #30263a;
+      color: #fffaff;
+    }
+
+    /* Подвал */
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 23px 0 30px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer .brand {
+      font-size: 21px;
+      color: var(--text);
+    }
+
+    .footer .brand-mark {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--bg);
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 10;
+      width: max-content;
+      max-width: calc(100% - 30px);
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    /* Планшеты */
+
+    @media (max-width: 800px) {
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        padding: 45px 0 55px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .hero-art {
+        min-height: 370px;
+      }
+
+      .hero-art::before {
+        width: 280px;
+        height: 280px;
+      }
+
+      .hero-art::after {
+        width: 350px;
+        height: 350px;
+      }
+
+      .section {
+        padding: 57px 0;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .about-card {
+        min-height: 250px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        padding: 20px;
+      }
+
+      .step-num {
+        margin-bottom: 15px;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .custom-banner {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .contact-box {
+        padding: 40px 22px;
+      }
+    }
+
+    /* Телефоны */
+
+    @media (max-width: 520px) {
+      .wrap {
+        width: calc(100% - 28px);
+      }
+
+      .brand {
+        font-size: 24px;
+      }
+
+      .nav > .btn {
+        padding: 10px 13px;
+        font-size: 12px;
+      }
+
+      .hero-art {
+        min-height: 320px;
+      }
+
+      .bear {
+        transform: scale(.86) rotate(-3deg);
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product-visual {
+        height: 245px;
+      }
+
+      .product-info p {
+        min-height: 0;
+      }
+
+      .values {
+        gap: 12px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .custom-banner {
+        padding: 24px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="SoftBear — на главную">
+        <span class="brand-mark">♡</span>
+        SoftBear
+      </a>
+
+      <nav class="navlinks" aria-label="Главная навигация">
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О мастерской</a>
+        <a href="#order">Как заказать</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+
+      <a class="btn" href="https://t.me/softbearshop"
+         target="_blank" rel="noopener noreferrer">
+        Написать в Telegram ↗
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Первый экран -->
+
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+
+        <div>
+          <span class="eyebrow">маленькая мастерская с теплом</span>
+
+          <h1>
+            Игрушки, в которые
+            <em>влюбляются</em>
+          </h1>
+
+          <p>
+            Вязаные мишки, зайчики и маленькие друзья ручной работы.
+            Для уютных подарков, важных моментов и просто хорошего настроения.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#catalog">
+              Выбрать игрушку ↓
+            </a>
+
+            <a class="btn secondary"
+               href="https://t.me/softbearshop"
+               target="_blank" rel="noopener noreferrer">
+              Задать вопрос
+            </a>
+          </div>
+
+          <p class="tiny-note">
+            ♡ Каждая игрушка создаётся вручную — поэтому у каждой свой характер.
+          </p>
+        </div>
+
+        <div class="hero-art" aria-label="Декоративная иллюстрация мишки">
+          <div class="bear" aria-hidden="true">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="head">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+              <div class="muzzle"></div>
+              <div class="nose"></div>
+            </div>
+            <div class="body"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="belly"></div>
+            <div class="scarf"></div>
+          </div>
+
+          <div class="art-label">
+            с любовью, SoftBear ♡
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Каталог -->
+
+    <section class="section" id="catalog">
+      <div class="wrap">
+
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">найди своего друга</span>
+            <h2>Каталог игрушек</h2>
+          </div>
+
+          <p>
+            Выбери настроение — а если хочется что-то особенное,
+            можно обсудить индивидуальный заказ.
+          </p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Фильтр каталога">
+          <button class="filter active" data-filter="all" aria-pressed="true">
+            Все игрушки
+          </button>
+          <button class="filter" data-filter="bears" aria-pressed="false">
+            Мишки
+          </button>
+          <button class="filter" data-filter="bunnies" aria-pressed="false">
+            Зайчики
+          </button>
+          <button class="filter" data-filter="mini" aria-pressed="false">
+            Брелоки и мини
+          </button>
+          <button class="filter" data-filter="custom" aria-pressed="false">
+            На заказ
+          </button>
+        </div>
+
+        <div class="products" id="products">
+
+          <article class="product" data-category="bears">
+            <div class="product-visual">
+              <span class="product-tag">Любимец мастерской</span>
+              <span class="toy-icon" aria-hidden="true">🧸</span>
+            </div>
+            <div class="product-info">
+              <h3>Мишка Тедди</h3>
+              <p>
+                Мягкий вязаный мишка для уютных объятий и подарков.
+              </p>
+              <div class="product-bottom">
+                <span class="price">Цена по запросу</span>
+                <button class="small-link order-item"
+                        data-item="Мишка Тедди">
+                  Заказать ↗
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="bunnies">
+            <div class="product-visual">
+              <span class="product-tag">Нежный характер</span>
+              <span class="toy-icon" aria-hidden="true">🐰</span>
+            </div>
+            <div class="product-info">
+              <h3>Зайчик Плюш</h3>
+              <p>
+                Милый зайчик — маленький компаньон для больших приключений.
+              </p>
+              <div class="product-bottom">
+                <span class="price">1 300 ₽</span>
+                <button class="small-link order-item"
+                        data-item="Зайчик Плюш">
+                  Заказать ↗
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="mini">
+            <div class="product-visual">
+              <span class="product-tag">Маленький подарок</span>
+              <span class="toy-icon" aria-hidden="true">🐻</span>
+            </div>
+            <div class="product-info">
+              <h3>Мини-мишка</h3>
+              <p>
+                Компактный вязаный друг, которого удобно брать с собой.
+              </p>
+              <div class="product-bottom">
+                <span class="price">Цена по запросу</span>
+                <button class="small-link order-item"
+                        data-item="Мини-мишка">
+                  Заказать ↗
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="mini">
+            <div class="product-visual">
+              <span class="product-tag">На сумку или ключи</span>
+              <span class="toy-icon" aria-hidden="true">🧸</span>
+            </div>
+            <div class="product-info">
+              <h3>Брелок-игрушка</h3>
+              <p>
+                Небольшая вязаная деталь, которая делает каждый день милее.
+              </p>
+              <div class="product-bottom">
+                <span class="price">350 ₽</span>
+                <button class="small-link order-item"
+                        data-item="Брелок-игрушка">
+                  Заказать ↗
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="bunnies">
+            <div class="product-visual">
+              <span class="product-tag">Пастельная палитра</span>
+              <span class="toy-icon" aria-hidden="true">🐇</span>
+            </div>
+            <div class="product-info">
+              <h3>Зайчик-малыш</h3>
+              <p>
+                Миниатюрный зайчик в нежных оттенках. Цвет можно обсудить.
+              </p>
+              <div class="product-bottom">
+                <span class="price">Цена по запросу</span>
+                <button class="small-link order-item"
+                        data-item="Зайчик-малыш">
+                  Заказать ↗
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="custom">
+            <div class="product-visual">
+              <span class="product-tag">Твоя идея</span>
+              <span class="toy-icon" aria-hidden="true">🎀</span>
+            </div>
+            <div class="product-info">
+              <h3>Игрушка на заказ</h3>
+              <p>
+                Обсудим цвет, размер и детали, чтобы создать именно твоего персонажа.
+              </p>
+              <div class="product-bottom">
+                <span class="price">Стоимость обсуждается</span>
+                <button class="small-link order-item"
+                        data-item="Индивидуальный заказ">
+                  Обсудить ↗
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="custom-banner">
+          <div>
+            <h3>Не нашла ту самую?</h3>
+            <p>
+              Напиши идею или пришли референс — обсудим, что можно связать.
+            </p>
+          </div>
+
+          <a class="btn pink"
+             href="https://t.me/softbearshop"
+             target="_blank" rel="noopener noreferrer">
+            Обсудить идею ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- О мастерской -->
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+
+        <div class="about-card">
+          <span class="big-heart">♡</span>
+          <p>
+            Не просто игрушка. Маленькая история, связанная вручную.
+          </p>
+          <span style="font-size:12px;letter-spacing:1.4px;text-transform:uppercase">
+            SoftBear · handmade
+          </span>
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow">немного о нас</span>
+          <h2>Тепло в каждой петельке</h2>
+
+          <p>
+            SoftBear — небольшая творческая мастерская вязаных игрушек.
+            Здесь появляются мишки, зайчики и другие персонажи,
+            созданные вручную и с вниманием к деталям.
+          </p>
+
+          <p>
+            Мне важно, чтобы игрушка радовала не только на фото, но и вживую.
+            Поэтому перед заказом можно уточнить размер, оттенок пряжи и другие детали.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <strong>♡ Ручная работа</strong>
+              <span>Каждая игрушка связана вручную.</span>
+            </div>
+
+            <div class="value">
+              <strong>✿ Внимание к деталям</strong>
+              <span>Аккуратное исполнение и уютная подача.</span>
+            </div>
+
+            <div class="value">
+              <strong>🎁 Для подарка</strong>
+              <span>Можно обсудить упаковку.</span>
+            </div>
+
+            <div class="value">
+              <strong>💬 На связи</strong>
+              <span>Помогу выбрать и отвечу на вопросы.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Как заказать -->
+
+    <section class="section" id="order">
+      <div class="wrap">
+
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">всего три шага</span>
+            <h2>Как заказать</h2>
+          </div>
+
+          <p>
+            Пока все заказы оформляются напрямую в Telegram —
+            просто и без лишних форм.
+          </p>
+        </div>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-num">01</div>
+            <h3>Выбери игрушку</h3>
+            <p>
+              Посмотри каталог или напиши, какого персонажа хочется.
+              Если есть фото-пример — прикрепи его в сообщении.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">02</div>
+            <h3>Уточним детали</h3>
+            <p>
+              Обсудим стоимость, доступность, цвет, сроки изготовления
+              и способ доставки до подтверждения заказа.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">03</div>
+            <h3>Создадим уют</h3>
+            <p>
+              После согласования деталей я подготовлю заказ
+              и сообщу, как получить готовую игрушку.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Вопросы и ответы -->
+
+    <section class="section" id="faq">
+      <div class="wrap faq">
+
+        <span class="eyebrow">коротко о главном</span>
+        <h2>Частые вопросы</h2>
+
+        <details>
+          <summary>Можно ли выбрать другой цвет?</summary>
+          <p>
+            Да, напиши желаемый оттенок. Я проверю, какие варианты
+            пряжи доступны для выбранной игрушки.
+          </p>
+        </details>
+
+        <details>
+          <summary>Сколько времени занимает изготовление?</summary>
+          <p>
+            Срок зависит от модели и текущих заказов.
+            Точный срок согласуем до подтверждения заказа.
+          </p>
+        </details>
+
+        <details>
+          <summary>Как узнать стоимость доставки?</summary>
+          <p>
+            Напиши в Telegram и укажи город или способ доставки,
+            который тебе удобен. Доступные варианты обсудим отдельно.
+          </p>
+        </details>
+
+        <details>
+          <summary>Можно ли заказать свою идею?</summary>
+          <p>
+            Конечно, можно прислать описание или референс.
+            Я посмотрю, получится ли воплотить задумку и сколько это будет стоить.
+          </p>
+        </details>
+
+        <details>
+          <summary>Как ухаживать за игрушкой?</summary>
+          <p>
+            Способ ухода зависит от используемой пряжи и наполнителя.
+            При заказе уточни материалы — подскажу подходящий уход.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Контакты -->
+
+    <section class="contact">
+      <div class="wrap">
+        <div class="contact-box">
+
+          <span class="eyebrow">давай знакомиться</span>
+
+          <h2>Твой маленький друг уже ждёт ♡</h2>
+
+          <p>
+            Загляни в Telegram, чтобы посмотреть актуальные работы,
+            задать вопрос или оформить заказ.
+          </p>
+
+          <a class="btn"
+             href="https://t.me/softbearshop"
+             target="_blank" rel="noopener noreferrer">
+            Перейти в Telegram ↗
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Нижняя часть сайта -->
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+
+      <a class="brand" href="#home">
+        <span class="brand-mark">♡</span>
+        SoftBear
+      </a>
+
+      <span>Вязаные игрушки ручной работы</span>
+
+      <a href="https://t.me/softbearshop"
+         target="_blank" rel="noopener noreferrer">
+        Telegram ↗
+      </a>
+
+      <span>© <span id="year"></span> SoftBear</span>
+
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</div>
+
+<script>
+  // Фильтры каталога
+
+  const filters = document.querySelectorAll(".filter");
+  const products = document.querySelectorAll(".product");
+
+  filters.forEach((button) => {
+    button.addEventListener("click", () => {
+      filters.forEach((item) => {
+        const isActive = item === button;
+        item.classList.toggle("active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
+      });
+
+      const selected = button.dataset.filter;
+
+      products.forEach((card) => {
+        const shouldShow =
+          selected === "all" ||
+          card.dataset.category === selected;
+
+        card.style.display = shouldShow ? "" : "none";
+      });
+    });
+  });
+
+  // Уведомление при нажатии на кнопку заказа
+
+  const toast = document.getElementById("toast");
+  let toastTimer;
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2600);
+  }
+
+  // Открытие Telegram с подготовленным текстом заказа
+
+  document.querySelectorAll(".order-item").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = button.dataset.item;
+
+      const message =
+        `Здравствуйте! Хочу узнать подробнее о заказе: ${item}. ` +
+        "Подскажите, пожалуйста, стоимость и сроки.";
+
+      showToast("Открываем Telegram…");
+
+      const telegramUrl =
+        "https://t.me/softbearshop?text=" +
+        encodeURIComponent(message);
+
+      window.open(
+        telegramUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    });
+  });
+
+  // Актуальный год в подвале
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
